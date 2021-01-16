@@ -1,5 +1,5 @@
-#include <iostream>
-using namespace std;
+#include <iostream>            // MERGE SORT 
+using namespace std;           // T.C : O(n logn)
 void Merge(int *a, int low, int high, int mid)
 {
 
