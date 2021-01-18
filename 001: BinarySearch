@@ -1,0 +1,39 @@
+#include<iostream>          // Binary Search
+using namespace std;         // O(log n)
+int main()
+{
+int i,n,search,first,middle,last,insert,position;
+int arr[n];
+cout<<"enter the array size: ";
+cin>>n;
+cout<<"enter elements of array: ";
+for(i=0;i<n;i++)
+    cin>>arr[i];
+    cout<<"enter the number to find: ";
+    cin>>search;
+
+    first=0;
+    last=n-1;
+    while(first<=last)
+    {
+        if (arr[middle]==search){
+        cout<<search<<" element found successfully! "<<"\n";
+        break;
+		}
+		else if (arr[middle]<search)
+        {
+            first=middle+1;
+
+        }
+		else
+		{
+			 last = middle - 1;
+
+		}
+		middle = (first + last)/2;
+	}
+if(first > last){
+	cout<<"Not found! element is not present in the list."<<endl;
+	}
+	return 0;
+}
