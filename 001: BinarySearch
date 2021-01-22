@@ -16,21 +16,16 @@ for(i=0;i<n;i++)
     last=n-1;
     while(first<=last)
     {
+    int middle = first + (last-first)/2;
         if (arr[middle]==search){
         cout<<search<<" element found successfully! "<<"\n";
         break;
 		}
 		else if (arr[middle]<search)
-        {
-            first=middle+1;
+                     first=middle+1;
 
-        }
 		else
-		{
-			 last = middle - 1;
-
-		}
-		middle = (first + last)/2;
+		 last = middle - 1;		
 	}
 if(first > last){
 	cout<<"Not found! element is not present in the list."<<endl;
