@@ -2,10 +2,11 @@
 using namespace std;                         
 int binarySearch(int arr[], int first, int last, int x) 
 { 
+     int res=-1;
     while(first<=last)
     {
        int mid=first+(last-first)/2;
-       int res;
+    
         if (arr[mid] == x) 
             return arr[mid]; 
             
@@ -17,7 +18,7 @@ int binarySearch(int arr[], int first, int last, int x)
         else
             last = mid - 1; 
     } 
-     
+     return res;
 } 
 int main()
 {
