@@ -1,0 +1,37 @@
+#include<iostream>         // T.C : O(log n)
+using namespace std;
+float suare_root(int x){
+    int start = 0, end = x;
+    int mid;
+    float ans;
+    while(start<=end){
+        mid = start + (end- start)/2;
+        if(mid*mid == x ){
+            ans = mid;
+            break;
+        }
+        if(mid*mid<x){
+            start = mid + 1;
+            ans = mid;
+        }
+        else
+        end = mid - 1;
+    }
+    float inc = 0.1;
+     int p=2;
+    for(int i =0;i<p;i++){
+        while(ans*ans <=x) {
+            ans += inc;
+        }
+        ans = ans - inc;
+        inc = inc/10;
+    }
+    return ans;
+}
+int main(){
+
+    cout<<suare_root(49)<<endl;
+    cout<<suare_root(10)<<endl;
+    cout<<suare_root(21)<<endl;
+    cout<<suare_root(25)<<endl;
+}
