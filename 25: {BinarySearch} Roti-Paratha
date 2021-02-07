@@ -26,13 +26,11 @@ int main(){
     int a[n];
     for(int i=0;i<n;i++) cin>>a[i];
     sort(a,a+n);
-    int lb = 1;
+    int lb = 0;
     int ub =1e8;
     int ans= 0;
     while(lb<=ub){
         int mid = (lb + ub)/2;
-        int cow=1;
-        int prev = a[0];
             if(solve(a,n,par,mid)){
                 ans = mid;
                 ub = mid -1;
