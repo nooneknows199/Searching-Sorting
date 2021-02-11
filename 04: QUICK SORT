@@ -1,5 +1,5 @@
-#include<iostream>             //  QUICK SORT
-using namespace std;            //  T.C : O(n logn) / O(n^2)
+#include<iostream>               //  T.C : O(n logn) / O(n^2)
+using namespace std;             //  S.C : O(n logn) 
 void QuickSort(int[],int,int);
 int Partition(int[],int,int);
 
@@ -12,7 +12,7 @@ int main(){
     for(i=0;i<n;i++)
       cin>>a[i];
     
-QuickSort(a,0,n-1);
+    QuickSort(a,0,n-1);
     cout<<"sorted list using quick sort is: ";
     for(i=0;i<n;i++)
       cout<<a[i]<<" ";
@@ -20,32 +20,27 @@ QuickSort(a,0,n-1);
     return 0;
 }
 
-int Partition(int a[],int lb,int ub){
-    int pivot,start,end;
-    pivot=a[lb];
-    start=lb;
-    end=ub;
-while(start<end){
-    while(a[start]<=pivot){
-        start++;
-    }
-    while(a[end]>pivot){
-        end--;
-    }
-    if(start<end){
-        swap(a[start],a[end]);
-    }
-}
-swap(a[lb],a[end]);
-return end;
-}
-
-
 void QuickSort(int a[],int lb,int ub){
-      int loc;
-   if(lb<ub){
-      loc=Partition(a,lb,ub);
-      QuickSort(a,lb,loc-1);
-      QuickSort(a,loc+1,ub);
+     
+    if(lb<ub){
+     int p = Partition(a,lb,ub);
+      QuickSort(a,lb,p-1);
+      QuickSort(a,p+1,ub);
 } 
+}
+
+int Partition(int a[],int lb,int ub)
+{
+    int pivot = a[ub];
+    int pindex = lb;
+   
+   for(int i = lb;i<ub;i++){
+       if(a[i]<pivot){
+           swap(a[i],a[pindex]);
+           pindex++;
+       }
+}
+
+swap(a[pindex],a[ub]);
+return pindex;
 }
