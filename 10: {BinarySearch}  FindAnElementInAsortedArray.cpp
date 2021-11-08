@@ -53,9 +53,9 @@ int main()
    if(arr[0] < arr[n-1]){
 		return 0;
 	}
-	int count = findRotationCount(arr, n);
-int res1 = binarySearch(arr,0,count-1, x) ; 
-int res2 = binarySearch(arr,count,n-1, x) ; 
+	int index = findRotationCount(arr, n);
+int res1 = binarySearch(arr,0,index-1, x) ; 
+int res2 = binarySearch(arr,index,n-1, x) ; 
   int ans = (res1 > 0) ? res1 : res2 ;
 (res1 == -1 && res2 == -1) ? cout << -1
                    : cout << ans; 
