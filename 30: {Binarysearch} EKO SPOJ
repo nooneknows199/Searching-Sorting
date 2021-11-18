@@ -1,40 +1,42 @@
-#include <bits/stdc++.h>
-#define int long long int
-#define pb push_back
-#define ps(x,y) fixed<<setprecision(y)<<x
-#define mod 1000000007
-#define w(x) int x; cin>>x;while(x--)
+#include<bits/stdc++.h>    // T.C : O(n log n)
 using namespace std;
+const int N = 1e6+10;
+int n;
+long long m;
+long long trees[N];
 
-bool solve(int *a, int n,int m,int mid){
-    int sum = 0;
-     for(int i=0; i<n; i++){
-         if(a[i]>mid)  
-         sum += a[i]-mid;
-     }
-     if(sum>=m)
-     return true;
-     else 
-     return false;
-}
-int32_t main(){
-    
-        int n,m;
-        cin>>n>>m;
-        int a[n];
-      for(int i=0; i<n; i++) cin>>a[i];
-        int lb = 0;
-        int ans = 0;
-        int ub = *max_element(a,a+n);
-        while(lb<=ub){
-            int mid = (lb+ub)/2;
-            if(solve(a,n,m,mid)){
-                ans = mid;
-                lb = mid+1;
-            } 
-            else 
-            ub = mid-1;
+bool isWoodSufficient(int h){    // O(n)
+    long long wood = 0;
+    for(int i=0;i<n;i++){
+        if(trees[i] >= h){
+            wood += (trees[i] - h);
         }
-        cout<<ans;
-        return 0;
+    }
+    return wood >= m;
+    // if(wood>=m) return true;
+    // return false;
+}
+ 
+int main(){
+
+    cin>>n>>m;     // 4 7 
+    for(int i=0;i<n;i++)
+        cin>>trees[i];       // 20 15 10 17
+
+    long long lo = 0, hi = 1e9,mid;
+    // TTTTTTTFFFFFFFF   Predicate function
+    // We have to find the last true value
+        
+    while(hi-lo > 1){            // O(log n(O(n))) = O(n log n)
+        mid = (hi+lo)/2;
+        if(isWoodSufficient(mid)){
+            lo = mid;
+        }
+        else
+            hi = mid-1;
+    }
+    if(isWoodSufficient(hi))
+        cout<<hi<<endl;
+    else
+        cout<<lo<<endl;
 }
