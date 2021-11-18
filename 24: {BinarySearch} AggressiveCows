@@ -1,36 +1,46 @@
-#include<bits/stdc++.h>
+#include<bits/stdc++.h>    // T.C : O(n log n)
 using namespace std;
-int main(){
+const int N = 1e5+10;
+int n,cows;
+int positions[N];
+
+bool canPlaceCows(int minDist){    // O(n)
+    int lastPos = -1;
+    int cows_ct = cows;
+    for(int i=0;i<n;i++){
+        if(positions[i] - lastPos >= minDist || lastPos == -1){
+            cows_ct--;
+            lastPos = positions[i];
+        }
+        if(cows_ct == 0) break;
+    }
+    return cows_ct == 0;
+}
+ 
+int main()
+{
     int t;
     cin>>t;
     while(t--){
-    int n,c;
-    cin>>n>>c;
-    int a[n];
-    for(int i=0;i<n;i++) cin>>a[i];
-    sort(a,a+n);
-    int lb = 1;
-    int ub =1e9;
-    int ans= 0;
-    while(lb<=ub){
-        int mid = (lb + ub)/2;
-        int cow=1;
-        int prev = a[0];
-        for(int i=1;i<n;i++){
-            if(a[i]-prev >=mid){
-                cow++;
-                prev = a[i];
-                if(c==cow) break;
-            }
+    cin>>n>>cows;
+    for(int i=0;i<n;i++) cin>>positions[i];
+    sort(positions,positions+n);
+
+    int lo = 0, hi = 1e9,mid;
+    // TTTTTTTFFFFFFFF   Predicate function
+    // We have to find the last true value
+        
+    while(hi-lo > 1){            // O(log n(O(n))) = O(n log n)
+        mid = (hi+lo)/2;
+        if(canPlaceCows(mid)){
+            lo = mid;
         }
-        if(cow == c){
-            ans = mid;
-            lb = mid+1;
+        else
+            hi = mid-1;
     }
+    if(canPlaceCows(hi))
+        cout<<hi<<endl;
     else
-    ub = mid -1;
+        cout<<lo<<endl;
 }
-cout<<ans<<endl;
-}
-return 0;
 }
